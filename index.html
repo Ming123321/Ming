@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <script src="./template-web.js"></script>
+
+
+</head>
+
+<body>
+    <input type="text" placeholder="你想吃点什么" class="txt">
+    <button class="btn">搜索</button>
+    <div class="menuList"></div>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+
+<script type="text/html" id="mList">
+    {{each data}}
+    <div class="ml">{{$value[0]}}</div>
+    {{/each}}
+</script>
+<script>
+    $(function() {
+        $(".btn").click(function() {
+            var key = $(".txt").val();
+            getCaipu(key);
+        })
+
+        //获取数据
+        function getCaipu(cp) {
+            $.ajax({
+                // method: "GET",
+                url: 'http://apis.juhe.cn/cook/query.php?rn=10&pn=3&key=c342e3ebc8ec3b29856cca770de6f832&menu=' + cp,
+                dataType: 'jsonp',
+                success: function(res) {
+                    console.log(res);
+                    renderMenu(res)
+                }
+            })
+        }
+
+        //渲染数据
+        function renderMenu(res) {
+            var htmlStr = template('mList', res);
+            $(".menuList").html(htmlStr);
+        }
+    })
+</script>
+
+</html>
