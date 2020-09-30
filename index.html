@@ -20,9 +20,10 @@
 
 <script type="text/html" id="mList">
     {{each data}}
-    <div class="ml">{{$value[0]}}</div>
+    <div class="ml">{{$value.title}}</div>
     {{/each}}
 </script>
+
 <script>
     $(function() {
         $(".btn").click(function() {
@@ -37,8 +38,8 @@
                 url: 'http://apis.juhe.cn/cook/query.php?rn=10&pn=3&key=c342e3ebc8ec3b29856cca770de6f832&menu=' + cp,
                 dataType: 'jsonp',
                 success: function(res) {
-                    console.log(res);
-                    renderMenu(res)
+                    console.log(res.result);
+                    renderMenu(res.result)
                 }
             })
         }
