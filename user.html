@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>user分支</title>
+		<script src="./jquery.min.js"></script>
+	</head>
+
+	<body>
+		<input type="text" class="a" /> + <input type="text" class="b" />
+		<input type="button" value="=" class="eql" />
+		<input type="text" class="c" />
+	</body>
+	<script>
+		$(function () {
+			$('.eql').click(function () {
+				console.log($('.a').val());
+				$('.c').val() = $('.a').val() + $('.b').val();
+			});
+		});
+	</script>
+</html>
